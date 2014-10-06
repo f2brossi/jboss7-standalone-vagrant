@@ -1,7 +1,7 @@
 class jboss::jboss (  
               $server_port='8005',
               $http_port='8080',
-		   $ajp_port='8009',
+  	      $ajp_port='8009',
               $redirect_port='8443',
               $user='jboss',
               $password='$6$4VOKuIDtu9Q$7ITuz8TWfQHlfThNQ0qyrCkSLai3MZhj7HiuILZ1GCLp1FRarZq93ieW/j0CsllRKmjAppS1WPzJkg6GnyQCe0',
@@ -62,8 +62,7 @@ class jboss::jboss (
   # Install jboss    #
   #####################
   exec { 'download_jboss':
-      command => "wget 
-http://download.jboss.org/jbossas/7.1/$jboss_prefix-$jboss_version/$jboss_prefix-$jboss_version.zip,
+      command => "wget http://download.jboss.org/jbossas/7.1/$jboss_prefix-$jboss_version/$jboss_prefix-$jboss_version.zip",
       cwd     => "/tmp",
       user    => $user,
       creates => "/tmp/$jboss_prefix-$jboss_version.zip",
@@ -84,25 +83,12 @@ http://download.jboss.org/jbossas/7.1/$jboss_prefix-$jboss_version/$jboss_prefix
       ],
   }
 
-
-exec { 'chown_directory':
+  exec { 'chown_directory':
       command => "sudo chown -fR $user.$user $jboss_dir/$jboss_prefix-$jobss_version/",
       onlyif  => "test true",
       require => Package['jdk7'], 
   }
 
-  ###################
-  # generate  a self signed ssl certificate
-  ###################	
-include ssl
-ssl::self_signed_certficate { $::fqdn:
-  common_name      => $::fqdn,
-  email_address    => 'root@example.de',
-  country          => 'FR',
-  organization     => 'Example GmbH',
-  days             => 730,
-  directory        => '$jboss_dir/$jboss_prefix-$jboss_version/standalone/configuration/'
-}
 
   ###################
   # Config  jboss  #
@@ -116,7 +102,7 @@ ssl::self_signed_certficate { $::fqdn:
   ###################
 exec { 'launch_jboss':
       command => "./standalone.sh -b 0.0.0.0",
-      cwd     => $jboss_dir/$jboss_prefix-$jboss_version/bin/,
+      cwd     => "$jboss_dir/$jboss_prefix-$jboss_version/bin/",
       user    => $user,
       require => [
         User['jboss_user'],
