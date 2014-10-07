@@ -21,25 +21,22 @@ Vagrant.configure("2") do |config|
   config.vm.define 'test' do |test|
     test.vm.provider :openstack do |os|
       os.server_name = "test-jboss"
-      os.floating_ip = ENV['OS_FLOATING_IP']
-      os.flavor = '2_vCPU_RAM_4G_HD_10G'
+      os.floating_ip = ENV['OS_FLAOTING_IP']
+      os.flavor = '4_vCPU_RAM_8G_HD_10G'
       os.image = 'ubuntu-12.04_x86-64_3.11-DEPRECATED'
       os.ssh_username = "stack"
       os.networks = ['net']
     end
   end
 
-   # Install puppet  
-  config.vm.provision "shell", path: "installPuppetOnUbuntu.sh", privileged: "true"
+   # Install ansible  
+  config.vm.provision "shell", path: "installAnsibleOnUbuntu.sh", privileged: "true"
 
   # update /etc/hosts  
   config.vm.provision "shell", path: "hosts.sh", privileged: "true"
 
-  config.vm.provision "puppet" do |puppet|
-      puppet.module_path = "puppet/modules"
-      puppet.manifests_path = "."
-      puppet.manifest_file = "puppet/init.pp"
-      puppet.options = "--verbose --debug"
+  config.vm.provision :ansible do |ansible|
+      ansible.playbook = "ansible-jboss/jboss.yml"
   end
 
 end
