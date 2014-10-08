@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  sudo: True
+  user: root
   roles:
-    - ansible-jboss
+    - jboss-standalone
 
