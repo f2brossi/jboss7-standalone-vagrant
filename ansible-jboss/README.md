@@ -10,13 +10,10 @@ A role for installing jboss.
 
 ## Usage:
 ```
-  - name: Install jboss
-    hosts: jboss
-    user: root
-  #  connection: local
-    
-    roles:
-      - jboss      
+- hosts: all
+  user: root
+  roles:
+    - jboss-standalone      
 ```
 
 ## License
