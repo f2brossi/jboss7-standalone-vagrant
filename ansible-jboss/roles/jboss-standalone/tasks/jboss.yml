@@ -1,11 +1,4 @@
----
-#- name: Install Java 1.7 and some basic dependencies (yum)
-#  yum: name={{ item }} state=present
-#  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'    
-#  with_items:
-#   - unzip
-#   - java-1.7.0-openjdk
-   
+--- 
 - name: Install Java 1.7 and some basic dependencies (apt)
   apt: pkg={{ item }} state=present update_cache=yes  
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
@@ -25,6 +18,9 @@
   # Rcd /g the version in the init script
 - name: Rename install directory
   command: chdir=/usr/share /bin/mv {{ jboss_archive_extracted }} jboss-as creates={{ jboss_base_dir }}
+
+- name: Copying foo.keystore file
+  file: src=foo.keystore dest={{ jboss_base_dir }}/standalone/configuration/
 
 - name: Copying standalone.xml configuration file
   template: src=standalone.xml dest={{ jboss_base_dir }}/standalone/configuration/
