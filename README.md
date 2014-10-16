@@ -2,8 +2,8 @@ jboss7-standalone with self signed SSL certificate
 ========================
 
  
-instanciation with vagrant plugin openstack
+1. Instanciation with vagrant plugin openstack
 
-provisionning with ansible
+2. Provisionning with ansible
 
-deployment with ansible ( to come) 
+3. war deployment with ansible (to come) 
