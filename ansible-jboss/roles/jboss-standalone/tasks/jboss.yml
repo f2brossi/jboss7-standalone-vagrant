@@ -20,7 +20,7 @@
   command: chdir=/usr/share /bin/mv {{ jboss_archive_extracted }} jboss-as creates={{ jboss_base_dir }}
 
 - name: Copying foo.keystore file
-  file: src=foo.keystore dest={{ jboss_base_dir }}/standalone/configuration/
+  copy: src=foo.keystore dest={{ jboss_base_dir }}/standalone/configuration/ mode=0755
 
 - name: Copying standalone.xml configuration file
   template: src=standalone.xml dest={{ jboss_base_dir }}/standalone/configuration/
