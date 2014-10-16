@@ -19,7 +19,7 @@ export JAVA_HOME
 
 ##
 # Set the JBoss user
-JBOSS_USER=jboss  
+JBOSS_USER=stack  
 export JBOSS_USER 
 
 # Load JBoss AS init.d configuration.
