@@ -1,12 +1,12 @@
 --- 
-- name: Install Java 1.7 and some basic dependencies (apt)
+- name: Install Java 1.7 and unzip (apt)
   apt: pkg={{ item }} state=present update_cache=yes  
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
    - unzip
    - openjdk-7-jdk
 
-- name: Create directory for Jboss build
+- name: Create directory to store Jboss zip file
   file: path=/opt/ state=directory mode=0755
     
 - name: Download JBoss from jboss.org
@@ -19,11 +19,11 @@
 - name: Rename install directory
   command: chdir=/usr/share /bin/mv {{ jboss_archive_extracted }} jboss-as creates={{ jboss_base_dir }}
 
-- name: Copying foo.keystore file
+- name: Copying foo.keystore file for ssl 
   copy: src=foo.keystore dest={{ jboss_base_dir }}/standalone/configuration/ mode=0755
 
-- name: Copying standalone.xml configuration file
-  template: src=standalone.xml dest={{ jboss_base_dir }}/standalone/configuration/
+- name: Copying standalone.xml configuration file with https configured
+   template: src=standalone.xml dest={{ jboss_base_dir }}/standalone/configuration/
   notify: restart jboss
 
 - name: Add group "{{ jboss_group }}"
@@ -40,7 +40,3 @@
 
 - name: Enable JBoss to be started at boot
   service: name=jboss enabled=yes state=started 
-
-#- name: deploy iptables rules
-#  template: src=iptables-save dest=/etc/sysconfig/iptables
-#  notify: restart iptables
