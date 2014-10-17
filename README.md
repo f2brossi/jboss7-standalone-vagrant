@@ -2,8 +2,17 @@ jboss7-standalone with self signed SSL certificate
 ========================
 
  
-1. Instanciation with vagrant plugin openstack
+Install Vagrant 1.4+
 
-2. Provisionning with ansible
+Install Vagrant Plugin openstack
 
-3. war deployment with ansible (to come) 
+Install Ansible
+
+Enter your credentials ENV[OS_XXX] in the Vagrantfile
+
+Update the hosts file with your public @ip of your vm.
+
+    vagrant up --provider=openstack
+
+
+NB: Coming war deployment with ansible 
