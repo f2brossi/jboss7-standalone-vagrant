@@ -10,6 +10,7 @@ Install the following applications on your local machine first:
  * [Vagrant openstack plugin] (https://github.com/ggiamarchi/vagrant-openstack-provider)
  * [Ansible](http://ansibleworks.com)
  
+## Configuration
 
 Enter your credentials ENV[OS_XXX] in the Vagrantfile
 
