@@ -1,4 +1,5 @@
-jboss7-standalone with self signed SSL certificate + war deployment from github
+Provision jboss7-standalone with self signed SSL certificate 
+war deployment from github releases
 ========================
 
 
