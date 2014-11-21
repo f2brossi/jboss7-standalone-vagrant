@@ -21,3 +21,7 @@ jboss_archive_extracted : "{{ jboss_full_name }}"
 jboss_archive           : "{{ jboss_full_name }}.zip"
 jboss_url               : "http://download.jboss.org/jbossas/7.1/{{ jboss_full_name }}/{{ jboss_archive }}"
 jboss_home_dir          : "{{jboss_base_dir}}/{{jboss_name}}"
+
+github_repository       : "https://github.com/f2brossi/openstack-server-apps"
+version                 : "1.0"
+artifact                : "account-management.war" 
