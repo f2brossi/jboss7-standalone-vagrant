@@ -1,19 +1,6 @@
-jboss7-standalone with self signed SSL certificate
+jboss7-standalone with self signed SSL certificate + war deployment from github
 ========================
 
-
-## Prereqs
-
-Install the following applications on your local machine first:
-
- * [Vagrant](http://vagrantup.com)
- * [Vagrant openstack plugin] (https://github.com/ggiamarchi/vagrant-openstack-provider)
- * [Ansible](http://ansibleworks.com)
- 
-ansible-apache-swift
-===================
-
-Apache reverse proxy for Openstack components Swift and Keystone.
 
 ## Prereqs
 
@@ -79,4 +66,3 @@ Vagrant.configure("2") do |config|
 Then run `vagrant up --provider=openstack`.
 
 
-TO do: add war deployment with ansible 
