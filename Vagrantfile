@@ -7,6 +7,13 @@ Vagrant.configure("2") do |config|
  config.ssh.shell = "bash"
  config.ssh.username = "stack"
 
+ # update hosts with the floating IP
+ Vagrant.configure("2") do |config|
+   config.vm.provision "shell" do |s|
+     s.inline =	"echo $OS_FLOATING_IP >> ansible-jboss/hosts"
+   end
+  end
+
  config.vm.provider :openstack do |os|
   os.username = ENV['OS_USERNAME']
   os.password = ENV['OS_PASSWORD']
@@ -14,7 +21,6 @@ Vagrant.configure("2") do |config|
   os.openstack_compute_url = ENV['OS_COMPUTE_URL']
   os.openstack_network_url = ENV['OS_NETWORK_URL']
   os.tenant_name = ENV['OS_TENANT_NAME']
-  #os.keypair_name = ENV['OS_KEYPAIR_NAME']
  end
 
  config.vm.define 'test' do |test|
