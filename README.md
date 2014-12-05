@@ -1,4 +1,4 @@
-Provision jboss7-standalone with self signed SSL certificate + war deployment from github releases
+Provision jboss7-standalone with self signed SSL certificate + war deployment from github release.
 ========================
 
 
@@ -16,9 +16,8 @@ After installing the applications above, the quickest way to get
 started is to specify all the details manually within a `config.vm.provider`
 block in the Vagrantfile
 
-Reuse the Vagrantfile given, filling in your information
-where necessary replacing each ENV['OS_XXXX'] according to your openstack provider account and credentials.
-
+Reuse the Vagrantfile given, filling in your information where necessary by replacing each
+ENV['OS_XXXX'] according to your openstack provider account and credentials.
 
 This Vagrantfile extract shows the needed configuration.
 
@@ -45,10 +44,9 @@ Vagrant.configure("2") do |config|
   config.vm.define 'test' do |test|
     test.vm.provider :openstack do |os|
       os.server_name = "test-jboss"
-      os.floating_ip = ENV['OS_FLOATING_URL']
+      os.floating_ip_pool = ENV['OS_FLOATING_IP_POOL']
       os.flavor = ENV['OS_FLAVOR']
       os.image = ENV['OS_IMAGE']
-      os.networks = [ENV['OS_NETWORK']]              
     end
   end
 
@@ -64,5 +62,3 @@ Vagrant.configure("2") do |config|
 ```
 
 Then run `vagrant up --provider=openstack`.
-
-
