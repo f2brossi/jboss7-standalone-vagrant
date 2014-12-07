@@ -33,7 +33,7 @@
   file: path={{ jboss_base_dir }}/ owner={{ jboss_owner }} group={{ jboss_group }} state=directory recurse=yes
 
 - name: Copy the init script
-  copy: src=jboss-as-standalone-{{ ansible_distribution }}-{{ ansible_architecture }}.sh dest=/etc/init.d/jboss mode=0755
+  copy: src=jboss-as-standalone-Ubuntu-x86_64.sh dest=/etc/init.d/jboss mode=0755
 
 - name: wget account-managmeent.war from my github
   command: wget {{github_repository}}/releases/download/{{version}}/{{artifact}}

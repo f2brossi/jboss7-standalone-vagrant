@@ -25,3 +25,6 @@ jboss_home_dir          : "{{jboss_base_dir}}/{{jboss_name}}"
 github_repository       : "https://github.com/f2brossi/openstack-server-apps"
 version                 : "1.0"
 artifact                : "account-management.war" 
+
+ansible_distribution    : "Ubuntu"
+ansible_architecture    : "x86_64" 
