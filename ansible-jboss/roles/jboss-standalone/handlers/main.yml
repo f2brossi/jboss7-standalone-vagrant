@@ -1,6 +1,5 @@
 ---
 - name: restart jboss 
+#  command: chdir=/usr/share/jboss-as/bin/ sudo ./standalone.sh -b 0.0.0.0 &
   service: name=jboss state=restarted
 
-- name: restart iptables
-  service: name=iptables state=restarted

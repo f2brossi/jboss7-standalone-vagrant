@@ -24,7 +24,7 @@
 
 - name: Copying standalone.xml configuration file with https configured
   template: src=standalone.xml dest={{ jboss_base_dir }}/standalone/configuration/
-  notify: restart jboss
+  
 
 - name: Add group "{{ jboss_group }}"
   group: name={{ jboss_group }}
@@ -37,6 +37,7 @@
 
 - name: wget account-managmeent.war from my github
   command: wget {{github_repository}}/releases/download/{{version}}/{{artifact}}
+  notify: restart jboss
 
-- name: Enable JBoss to be started at boot
-  service: name=jboss enabled=yes state=started 
+#- name: Enable JBoss to be started at boot
+#  service: name=jboss enabled=yes state=started 
